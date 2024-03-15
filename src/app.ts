@@ -4,6 +4,8 @@ import { ItemController } from "./controllers/item.controller";
 import { ItemService } from "./services/item.service";
 import { PerkController } from "./controllers/perk.controller";
 import { PerkService } from "./services/perk.service";
+import { InventoryController } from "./controllers/inventory.controller";
+import { InventoryService } from "./services/inventory.service";
 import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
@@ -53,6 +55,9 @@ class App {
 
     const perkController = new PerkController(new PerkService());
     this.app.use("/api/perks", perkController.router);
+
+    const inventoryController = new InventoryController(new InventoryService());
+    this.app.use("/api/inventory", inventoryController.router);
   }
 
   private setErrorHandlingMiddleware() {
